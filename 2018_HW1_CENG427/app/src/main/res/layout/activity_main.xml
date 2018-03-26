@@ -11,21 +11,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TODO LIST" />
+        android:text="TODO LIST"
+        android:textAlignment="center"
+        android:textColor="@color/title"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_weight="0dp"
         android:id="@+id/todoList"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight=""
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/addListText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -33,11 +38,13 @@
             android:inputType="textPersonName"
             android:hint="add new item"/>
 
-        <Button
-            android:id="@+id/button"
+        <ImageButton
+            android:id="@+id/addItemButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADD" />
+            android:background="@android:color/transparent"
+            android:onClick="addNewItem"
+            android:src="@drawable/ic_action_add" />
 
     </LinearLayout>
 
