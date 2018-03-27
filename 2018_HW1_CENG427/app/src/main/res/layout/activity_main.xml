@@ -20,13 +20,12 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0dp"
+        android:layout_weight="1"
         android:id="@+id/todoList"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=""
         android:orientation="horizontal">
 
         <EditText
@@ -36,15 +35,18 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="add new item"/>
+            android:hint="Add new item"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/addItemButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@color/title"
             android:onClick="addNewItem"
-            android:src="@drawable/ic_action_add" />
+            android:text="ADD"
+            android:textSize="18dp"
+            android:textColor="@color/background"
+            />
 
     </LinearLayout>
 

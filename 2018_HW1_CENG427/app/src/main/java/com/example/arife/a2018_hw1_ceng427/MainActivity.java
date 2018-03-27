@@ -17,7 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase fb;
     private DatabaseReference dbReferance;
     private Date currentTime;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,21 +42,27 @@ public class MainActivity extends AppCompatActivity {
         fb = FirebaseDatabase.getInstance();
         dbReferance = fb.getReference("ToDoList");
 
-
+        //create custom adapter insatance and send it to listview
         myAdapter = new MyAdapter(this, arrayList, dbReferance);
         listView.setAdapter(myAdapter);
         readData();
     }
+
+    /*Attach items to Arraylist (and to database for being permanent list)
+    *notify the adapter to set changes*/
     public void readData(){
 
         dbReferance.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //do not add each time same item
                 arrayList.clear();
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
                     String item = ds.getValue(String.class);
+                    //get the item from database and add the list
                     arrayList.add(item);
                 }
+                //refresh adapter
                 myAdapter.notifyDataSetChanged();
             }
 
@@ -65,7 +72,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*Add new item to list - onclick method on xml button attribute*/
     public void addNewItem(View v){
+        //each item have unique time to add database
         currentTime = Calendar.getInstance().getTime();
         String newItem= editText.getText().toString();
         dbReferance.child(currentTime.toString()).setValue(newItem);
